@@ -9,7 +9,7 @@
     var divTag;
 
     var pEl;
-
+    var childEl;
     //
     myGoal = document.getElementById("inputForm");
     myGoal.addEventListener("keydown", WriteGoal, false);
@@ -20,7 +20,8 @@
     enterGoal.addEventListener("click", AddToPage, false);
 
     mainEl = document.getElementById("mainElement");
-
+    childEl=document.getElementsByClassName("checkFamily");
+ 
     // 
     // 
     var deleteSelected = $('#deleteSelectedGoals');
@@ -28,6 +29,7 @@
 
     function AddToPage() {
         divTag = document.createElement("div");
+        divTag.className = "checkFamily";
         mainEl.appendChild(divTag);
         deleteBut = document.createElement("img");
         deleteBut.src = "image/delete1.png";
@@ -36,7 +38,7 @@
 
         checkBut = document.createElement("input");
         checkBut.type = "checkbox";
-        checkBut.class = "checkFamily";
+        
         checkBut.onclick = Overline;
         divTag.appendChild(checkBut);
 
@@ -62,20 +64,32 @@
     }
 
     function DeleteGoals() {
-        var a = document.getElementsByTagName("input");
-        var b = document.getElementsByTagName("div");
-
-        for (var i = 1; i < a.length; i++) {
-            if (a[i].checked) {
-                mainEl.removeChild(b[i])
+      //  var a = ocument.getElementsByTagName("input");
+        //var b = document.getElementsByTagName("div");
+        //var a=document.getElementsByClassName("checkFamily");
+       
+       //console.log (a.length)
+        
+        
+       for (var i = 0; i < childEl.length; i++) {
+            if (childEl[i].childNodes[1].checked) {
+               console.log (childEl[i].childNodes[1]);
+               mainEl.removeChild(childEl[i])
             }
-        }
+            //console.log (childEl[i].childNodes[1])
 
+        }
     }
 
+    
+
     function deleteOne() {
-        var b = document.getElementsByTagName("div");
-        var num = $('img').index(this);
-        mainEl.removeChild(b[num + 1]);
+       
+    this.parentNode.parentNode.removeChild(this.parentNode);
+
+        //var b = document.getElementById("div");
+        //var num = $('img').index(this);
+        //mainEl.removeChild(b[num + 1]);
+    
     }
 })(jQuery);
