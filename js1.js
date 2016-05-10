@@ -10,6 +10,8 @@
 
     var pEl;
     var childEl;
+
+    var Ar=[];
     //
     myGoal = document.getElementById("inputForm");
     myGoal.addEventListener("keydown", WriteGoal, false);
@@ -69,16 +71,21 @@
         //var a=document.getElementsByClassName("checkFamily");
        
        //console.log (a.length)
-        
+        Ar=[];
         
        for (var i = 0; i < childEl.length; i++) {
             if (childEl[i].childNodes[1].checked) {
-               console.log (childEl[i].childNodes[1]);
-               mainEl.removeChild(childEl[i])
-            }
+               Ar.push(i);
+                          
+            }            
             //console.log (childEl[i].childNodes[1])
-
+           // mainEl.removeChild(childEl[i])
         }
+
+        for (var j = Ar.length; j > 0; j--){
+            mainEl.removeChild(childEl[Ar[j-1]])
+       }
+        
     }
 
     
