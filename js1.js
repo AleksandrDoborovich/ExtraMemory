@@ -24,6 +24,9 @@
     mainEl = document.getElementById("mainElement");
     childEl=document.getElementsByClassName("checkFamily");
  
+
+    var ch = document.getElementsByClassName("inputFamily");
+    var pEl2 = document.getElementsByClassName("spanFamily");
     // 
     // 
     var deleteSelected = $('#deleteSelectedGoals');
@@ -40,11 +43,13 @@
 
         checkBut = document.createElement("input");
         checkBut.type = "checkbox";
+        checkBut.className="inputFamily";
         
         checkBut.onclick = Overline;
         divTag.appendChild(checkBut);
 
         pEl = document.createElement("span");
+        pEl.className="spanFamily";
         divTag.appendChild(pEl);
 
         newEl = document.createTextNode(myGoal.value);
@@ -54,13 +59,12 @@
     }
 
     function Overline() {
-        var ch = document.getElementsByTagName("input");
-        var pEl2 = document.getElementsByTagName("span");
-        for (var i = 1; i < ch.length; i++) {
+        
+        for (var i = 0; i < ch.length; i++) {
             if (ch[i].checked) {
-                pEl2[i - 1].style.textDecoration = "line-through"
+                pEl2[i].style.textDecoration = "line-through"
             } else {
-                pEl2[i - 1].style.textDecoration = "none"
+                pEl2[i].style.textDecoration = "none"
             }
         }
     }
