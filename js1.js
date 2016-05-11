@@ -8,10 +8,14 @@
     var deleteBut;
     var divTag;
 
-    var pEl;
+    var spanEl;
     var childEl;
 
-    var Ar=[];
+    var ArIndex=[];
+
+    var check;
+    var spanElDom;
+    
     //
     myGoal = document.getElementById("inputForm");
     myGoal.addEventListener("keydown", WriteGoal, false);
@@ -25,8 +29,8 @@
     childEl=document.getElementsByClassName("checkFamily");
  
 
-    var ch = document.getElementsByClassName("inputFamily");
-    var pEl2 = document.getElementsByClassName("spanFamily");
+    check = document.getElementsByClassName("inputFamily");
+    spanElDom = document.getElementsByClassName("spanFamily");
     // 
     // 
     var deleteSelected = $('#deleteSelectedGoals');
@@ -48,47 +52,41 @@
         checkBut.onclick = Overline;
         divTag.appendChild(checkBut);
 
-        pEl = document.createElement("span");
-        pEl.className="spanFamily";
-        divTag.appendChild(pEl);
+        spanEl = document.createElement("span");
+        spanEl.className="spanFamily";
+        divTag.appendChild(spanEl);
 
         newEl = document.createTextNode(myGoal.value);
-        pEl.appendChild(newEl);
+        spanEl.appendChild(newEl);
 
         myGoal.value = "";
     }
 
     function Overline() {
         
-        for (var i = 0; i < ch.length; i++) {
-            if (ch[i].checked) {
-                pEl2[i].style.textDecoration = "line-through"
-            } else {
-                pEl2[i].style.textDecoration = "none"
+        for (var i = 0; i < check.length; i++) {
+            if (check[i].checked) {
+                spanElDom[i].style.textDecoration = "line-through"
+            } 
+            else {
+                spanElDom[i].style.textDecoration = "none"
             }
         }
     }
 
     function DeleteGoals() {
-      //  var a = ocument.getElementsByTagName("input");
-        //var b = document.getElementsByTagName("div");
-        //var a=document.getElementsByClassName("checkFamily");
-       
-       //console.log (a.length)
-        Ar=[];
+  
+        ArIndex=[];
         
        for (var i = 0; i < childEl.length; i++) {
             if (childEl[i].childNodes[1].checked) {
-               Ar.push(i);
-                          
+               ArIndex.push(i);
             }            
-            //console.log (childEl[i].childNodes[1])
-           // mainEl.removeChild(childEl[i])
         }
 
-        for (var j = Ar.length; j > 0; j--){
-            mainEl.removeChild(childEl[Ar[j-1]])
-       }
+        for (var j = ArIndex.length; j > 0; j--) {
+            mainEl.removeChild(childEl[ArIndex[j-1]])
+        }
         
     }
 
@@ -96,11 +94,7 @@
 
     function deleteOne() {
        
-    this.parentNode.parentNode.removeChild(this.parentNode);
+        this.parentNode.parentNode.removeChild(this.parentNode);
 
-        //var b = document.getElementById("div");
-        //var num = $('img').index(this);
-        //mainEl.removeChild(b[num + 1]);
-    
     }
 })(jQuery);
